@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   
+</head>
+<body>
+   
+    <div>
+        <table id="notificationsTable">
+            <tr>
+                <td>Test</td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/Scripts/jquery.signalR-2.2.0.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        
+        $(function () {
+
+            
+            
+            var ticker = $.connection.MessengerHub;
+
+            ticker.client.showNewContractMessage = function () {
+
+                var table = document.getElementById("notificationsTable");
+                var row = table.insertRow(-1);
+                var cell = row.insertCell(0);
+
+                cell.innerHTML = "Neuer Vertrag wurde erstellt";
+            }
+
+            $.connection.hub.start().done();
+        });
+    </script>
+</body>
+</html>
